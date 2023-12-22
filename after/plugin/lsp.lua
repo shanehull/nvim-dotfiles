@@ -6,7 +6,7 @@ local cmp = require("cmp")
 local cmp_action = lsp_zero.cmp_action()
 
 -- Fix Undefined global 'vim'
-lsp_zero.configure("lua-language-server", {
+lsp_zero.configure("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {

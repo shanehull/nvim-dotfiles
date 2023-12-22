@@ -45,6 +45,7 @@ return require("packer").startup(function(use)
 		},
 	})
 
+	-- Sourcegraph / Cody
 	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua" })
 
 	-- Filetree and status/tabline
@@ -52,9 +53,10 @@ return require("packer").startup(function(use)
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
 
+	-- Auto formatting and typing helpers
 	use("jiangmiao/auto-pairs")
-	use("mhZZartington/formatter.nvim")
-
+	use("mhartington/formatter.nvim")
+	use("preservim/nerdcommenter")
 
 	-- Theme
 	use("morhetz/gruvbox")
