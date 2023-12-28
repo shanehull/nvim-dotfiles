@@ -66,7 +66,7 @@ return require("packer").startup(function(use)
 
 	-- Auto formatting and typing helpers
 	use("jiangmiao/auto-pairs")
-	use("mhartington/formatter.nvim")
+	use("nvimtools/none-ls.nvim")
 	use("preservim/nerdcommenter")
 
 	-- Theme
