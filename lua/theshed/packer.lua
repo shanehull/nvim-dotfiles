@@ -57,12 +57,7 @@ return require("packer").startup(function(use)
 	use("vim-airline/vim-airline-themes")
 
 	-- Startup dashboard
-	use({
-		"goolord/alpha-nvim",
-		config = function()
-			require("alpha").setup(require("alpha.themes.dashboard").config)
-		end,
-	})
+	use("goolord/alpha-nvim")
 
 	-- Auto formatting and typing helpers
 	use("jiangmiao/auto-pairs")
