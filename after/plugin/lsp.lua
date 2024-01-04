@@ -5,6 +5,8 @@ local mason_lspconfig = require("mason-lspconfig")
 local cmp = require("cmp")
 local cmp_action = lsp_zero.cmp_action()
 
+lsp_zero.preset("recommended")
+
 -- Fix Undefined global 'vim'
 lsp_zero.configure("lua_ls", {
 	settings = {
@@ -68,6 +70,7 @@ mason_lspconfig.setup({
 		"eslint",
 		"gopls",
 		"golangci_lint_ls",
+		"typos_lsp",
 	},
 	handlers = {
 		lsp_zero.default_setup,
