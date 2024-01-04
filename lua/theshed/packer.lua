@@ -64,6 +64,9 @@ return require("packer").startup(function(use)
 	use("nvimtools/none-ls.nvim")
 	use("preservim/nerdcommenter")
 
+	-- PrimeTime lethal weapons
+	use("ThePrimeagen/harpoon")
+
 	-- Theme
 	use("morhetz/gruvbox")
 end)
