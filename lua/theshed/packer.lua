@@ -19,7 +19,7 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	use("mbbill/undotree")
+	--use("mbbill/undotree")
 	use("tpope/vim-fugitive")
 
 	use({
@@ -52,6 +52,12 @@ return require("packer").startup(function(use)
 	use("nvim-tree/nvim-tree.lua")
 	use("nvim-tree/nvim-web-devicons")
 
+	-- PrimeTime lethal weapon
+	use("ThePrimeagen/harpoon")
+
+	-- Hide secrets in env files
+	use("laytan/cloak.nvim")
+
 	-- Status tab
 	use("vim-airline/vim-airline")
 	use("vim-airline/vim-airline-themes")
@@ -60,12 +66,14 @@ return require("packer").startup(function(use)
 	use("goolord/alpha-nvim")
 
 	-- Auto formatting and typing helpers
-	use("jiangmiao/auto-pairs")
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 	use("nvimtools/none-ls.nvim")
 	use("preservim/nerdcommenter")
-
-	-- PrimeTime lethal weapons
-	use("ThePrimeagen/harpoon")
 
 	-- Theme
 	use("morhetz/gruvbox")
