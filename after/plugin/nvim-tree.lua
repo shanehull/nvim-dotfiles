@@ -1,11 +1,3 @@
--- disable netrw at the very start of your init.lua
---vim.g.loaded_netrw = 1
---vim.g.loaded_netrwPlugin = 1
-
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
--- OR setup with some options
 require("nvim-tree").setup({
 	sort = {
 		sorter = "case_sensitive",
@@ -31,11 +23,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
--- Auto open
-vim.api.nvim_create_autocmd("VimEnter", {
-	pattern = "*",
-	callback = function()
-		vim.cmd("NvimTreeOpen")
-		vim.cmd("wincmd p")
-	end,
-})
+vim.keymap.set({ "n", "v" }, "<leader>e", ":NvimTreeToggle<CR>", { silent = true })

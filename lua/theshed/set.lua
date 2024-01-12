@@ -1,4 +1,5 @@
 vim.opt.guicursor = ""
+vim.opt.termguicolors = true
 vim.o.mouse = nil
 
 vim.opt.nu = true
