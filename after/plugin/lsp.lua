@@ -60,6 +60,10 @@ cmp.setup({
 		["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
 	}),
+	sources = cmp.config.sources({
+		{ name = "cody" },
+		{ name = "nvim_lsp" },
+	}),
 })
 
 -- Mason setup - default LSPs

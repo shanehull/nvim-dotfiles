@@ -8,6 +8,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.stylua,
 		null_ls.builtins.diagnostics.eslint,
+		null_ls.builtins.diagnostics.golangci_lint,
 		null_ls.builtins.completion.spell,
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
