@@ -26,7 +26,7 @@ dashboard.section.header.val = {
 -- Set menu
 dashboard.section.buttons.val = {
 	dashboard.button("n", "  > New file", ":ene <BAR> startinsert<CR>"),
-	dashboard.button("s", "󰈞  > Find file", ":cd $HOME/shed | Telescope find_files<CR>"),
+	dashboard.button("s", "󰈞  > Find file", ":Telescope find_files<CR>"),
 	dashboard.button("t", "  > Find text", ":Telescope live_grep<CR>"),
 	dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
 	dashboard.button("u", " > Update Plugins", ":PackerSync<CR>"),
