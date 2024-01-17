@@ -7,9 +7,6 @@ null_ls.setup({
 		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.golines,
 		null_ls.builtins.formatting.stylua,
-		null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.diagnostics.golangci_lint,
-		null_ls.builtins.completion.spell,
 		null_ls.builtins.formatting.prettierd.with({
 			filetypes = {
 				"javascript",
@@ -25,6 +22,10 @@ null_ls.setup({
 				"txt",
 			},
 		}),
+		null_ls.builtins.diagnostics.eslint_d,
+		null_ls.builtins.diagnostics.golangci_lint,
+		null_ls.builtins.completion.spell,
+		null_ls.builtins.code_actions.eslint_d,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then

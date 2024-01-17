@@ -71,7 +71,6 @@ mason.setup({})
 mason_lspconfig.setup({
 	ensure_installed = {
 		"tsserver",
-		"eslint",
 		"gopls",
 		"golangci_lint_ls",
 		"typos_lsp",
