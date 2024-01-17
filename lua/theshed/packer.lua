@@ -1,5 +1,3 @@
-local should_load_ai_assist = vim.fn.getenv("ALLOW_AI_ASSIST")
-
 vim.cmd.packadd("packer.nvim")
 
 return require("packer").startup(function(use)
@@ -48,7 +46,7 @@ return require("packer").startup(function(use)
 	})
 
 	-- Sourcegraph / Cody
-	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua", cond = should_load_ai_assist })
+	use({ "sourcegraph/sg.nvim", run = "nvim -l build/init.lua" })
 
 	-- Filetree
 	use("nvim-tree/nvim-tree.lua")
