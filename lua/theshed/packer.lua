@@ -19,7 +19,9 @@ return require("packer").startup(function(use)
 	})
 
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
-	--use("mbbill/undotree")
+
+	use("mbbill/undotree")
+
 	use("tpope/vim-fugitive")
 
 	use({
@@ -43,6 +45,19 @@ return require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
 		},
+	})
+
+	-- Markdown syntax highlighting / preview
+	use({
+		"vim-pandoc/vim-pandoc",
+		requires = { "vim-pandoc/vim-pandoc-syntax" },
+	})
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = function()
+			vim.fn["mkdp#util#install"]()
+		end,
+		ft = { "markdown" },
 	})
 
 	-- Sourcegraph / Cody

@@ -1,5 +1,17 @@
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "javascript", "typescript", "c", "lua", "go" },
+	ensure_installed = {
+		"bash",
+		"javascript",
+		"typescript",
+		"c",
+		"lua",
+		"go",
+		"terraform",
+	},
+	ignore_install = {
+		"markdown",
+		"markdown_inline",
+	},
 
 	sync_install = false,
 
