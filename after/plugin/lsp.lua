@@ -68,6 +68,25 @@ cmp.setup({
 	}),
 })
 
+-- Setup cmdline completion
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = { { name = "buffer" } },
+})
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
+		},
+	}),
+})
+
 -- Mason setup - default LSPs
 mason.setup({})
 mason_lspconfig.setup({
