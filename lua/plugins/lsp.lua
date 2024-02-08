@@ -97,6 +97,11 @@ return {
             -- Tab through suggestions and Enter to complete
             local cmp = require("cmp")
             cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        require("luasnip").lsp_expand(args.body)
+                    end,
+                },
                 mapping = cmp.mapping.preset.insert({
                     ["<Up>"] = cmp.mapping.select_prev_item({ behavior = "select" }),
                     ["<Down>"] = cmp.mapping.select_next_item({ behavior = "select" }),

@@ -49,6 +49,7 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "VeryLazy" },
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -80,6 +81,7 @@ return {
 
     {
         "mbbill/undotree",
+        event = { "VeryLazy" },
         config = function()
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
         end,
@@ -124,6 +126,7 @@ return {
     },
     {
         "iamcco/markdown-preview.nvim",
+        event = "VeryLazy",
         build = function()
             vim.fn["mkdp#util#install"]()
         end,
@@ -240,6 +243,7 @@ return {
     -- Pretty cmdline
     {
         "folke/noice.nvim",
+        event = "VeryLazy",
         dependencies = {
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
