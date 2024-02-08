@@ -1,6 +1,7 @@
 return {
     {
         "morhetz/gruvbox",
+        lazy = false,
         priority = 1000,
         config = function()
             vim.cmd("colorscheme gruvbox")
@@ -21,6 +22,7 @@ return {
 
     {
         "folke/trouble.nvim",
+        event = "VeryLazy",
         config = function()
             require("trouble").setup({
                 icons = false,
@@ -49,7 +51,6 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
-        event = { "VeryLazy" },
         build = ":TSUpdate",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -81,7 +82,7 @@ return {
 
     {
         "mbbill/undotree",
-        event = { "VeryLazy" },
+        event = "VeryLazy",
         config = function()
             vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
         end,
@@ -159,6 +160,7 @@ return {
     -- Filetree
     {
         "nvim-tree/nvim-tree.lua",
+        event = "VeryLazy",
         config = function()
             require("nvim-tree").setup({
                 sort = {
@@ -188,7 +190,7 @@ return {
             vim.keymap.set({ "n", "v" }, "<leader>e", ":NvimTreeToggle<CR>", { silent = true })
         end,
     },
-    { "nvim-tree/nvim-web-devicons" },
+    { "nvim-tree/nvim-web-devicons",   lazy = true },
 
     -- PrimeTime lethal weapon
     {
@@ -327,5 +329,15 @@ return {
             })
         end,
     },
-    { "preservim/nerdcommenter" },
+    { "preservim/nerdcommenter", event = "VeryLazy" },
+
+    {
+        "dstein64/vim-startuptime",
+        -- lazy-load on a command
+        cmd = "StartupTime",
+        -- init is called during startup. Configuration for vim plugins typically should be set in an init function
+        init = function()
+            vim.g.startuptime_tries = 10
+        end,
+    },
 }
