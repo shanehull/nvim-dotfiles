@@ -62,6 +62,7 @@ return {
                     "lua",
                     "go",
                     "terraform",
+                    "vimdoc",
                 },
                 ignore_install = {
                     "markdown",
