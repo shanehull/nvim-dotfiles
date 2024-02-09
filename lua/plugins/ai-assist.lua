@@ -1,9 +1,9 @@
--- Function to check if a module is available before requiring it.
 return {
 	{
 		"sourcegraph/sg.nvim",
 		build = "nvim -l build/init.lua",
 		config = function()
+			-- Function to check if a module is available before requiring it.
 			local function safe_require(module)
 				local ok, result = pcall(require, module)
 				if ok and type(result) == "table" then
