@@ -1,23 +1,27 @@
+-- Function to check if a module is available before requiring it.
 return {
-    {
-        "sourcegraph/sg.nvim",
-        build = "nvim -l build/init.lua",
-        config = function()
-            -- Only install if this is set
-            -- TODO: better way of doing this env var?
-            if vim.fn.filereadable(vim.fn.expand("~/.config/nvim/env.lua")) == 1 then
-                vim.cmd("source ~/.config/nvim/env.lua")
-            end
+	{
+		"sourcegraph/sg.nvim",
+		build = "nvim -l build/init.lua",
+		config = function()
+			local function safe_require(module)
+				local ok, result = pcall(require, module)
+				if ok and type(result) == "table" then
+					return result
+				else
+					return { ALLOW_AI_ASSIST = false }
+				end
+			end
 
-            local enable_cody = vim.env.ALLOW_AI_ASSIST == "v:true"
+			-- Load the environment module safely (file can be absent).
+			local env = safe_require("env")
 
-            -- TODO: Revisit this 'enable_cody = false' breaks everything with:
-            --       Invalid command (not found): CodyTaskView
-            if enable_cody then
-                require("sg").setup({
-                    enable_cody = enable_cody,
-                })
-            end
-        end,
-    },
+			-- Enable cody?
+			local enable_cody = env.ALLOW_AI_ASSIST
+
+			if enable_cody then
+				require("sg").setup({})
+			end
+		end,
+	},
 }
