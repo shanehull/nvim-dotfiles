@@ -33,7 +33,7 @@ return {
 				dashboard.button("s", "󰈞  > Find file", ":Telescope find_files<CR>"),
 				dashboard.button("t", "  > Find text", ":Telescope live_grep<CR>"),
 				dashboard.button("r", "  > Recent files", ":Telescope oldfiles<CR>"),
-				dashboard.button("u", " > Update Plugins", ":PackerSync<CR>"),
+				dashboard.button("u", " > Update Plugins", ":Lazy update<CR>"),
 				dashboard.button("q", " > Quit NVIM", ":qa<CR>"),
 			}
 
