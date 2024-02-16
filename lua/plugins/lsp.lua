@@ -9,13 +9,6 @@ return {
 		end,
 	},
 
-	-- Mason LSP package manager
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = true,
-	},
-
 	-- Auto configure
 	{
 		"neovim/nvim-lspconfig",
@@ -23,8 +16,9 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- LSP Support
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim", tag = "v1.26.0" },
 			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason-lspconfig.nvim" },
 
 			-- Autocompletion
 			{ "hrsh7th/cmp-buffer" },
@@ -41,19 +35,14 @@ return {
 		},
 		config = function()
 			local lsp_zero = require("lsp-zero")
+			local lspconfig = require("lspconfig")
+			local mason = require("mason")
+			local mason_lspconfig = require("mason-lspconfig")
+
+			-- Use default but extend
 			lsp_zero.extend_lspconfig()
 
-			-- Fix Undefined global 'vim'
-			lsp_zero.configure("lua_ls", {
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = { "vim" },
-						},
-					},
-				},
-			})
-
+			-- LSP zero setup
 			lsp_zero.on_attach(function(client, bufnr)
 				local opts = { buffer = bufnr, remap = false }
 
@@ -88,10 +77,48 @@ return {
 					vim.lsp.buf.signature_help()
 				end, opts)
 			end)
+
+			-- Fix Undefined global 'vim'
+			lsp_zero.configure("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			})
+
+			-- Mason setup - default LSPs
+			mason.setup({})
+			mason_lspconfig.setup({
+				ensure_installed = {
+					"tsserver",
+					"gopls",
+					"golangci_lint_ls",
+					"typos_lsp",
+				},
+				handlers = {
+					lsp_zero.default_setup,
+				},
+			})
+
+			-- Config individual LSPs
+			lspconfig.gopls.setup({
+				settings = {
+					gopls = {
+						analyses = {
+							unusedparams = true,
+						},
+						staticcheck = true,
+						gofumpt = true,
+					},
+				},
+			})
 		end,
 	},
 
-	-- Completions
+	-- Completions with cmp
 	{
 		"hrsh7th/nvim-cmp",
 		config = function()
@@ -111,7 +138,6 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = false }),
 				}),
 				sources = cmp.config.sources({
-					{ name = "obsidian" },
 					{ name = "cody" },
 					{ name = "nvim_lsp" },
 				}),
