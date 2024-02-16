@@ -30,6 +30,10 @@ return {
 					null_ls.builtins.diagnostics.eslint_d,
 					null_ls.builtins.diagnostics.golangci_lint,
 					null_ls.builtins.diagnostics.statix,
+					null_ls.builtins.diagnostics.luacheck.with({
+						extra_args = { "--globals", "vim", "--std", "luajit" },
+					}),
+					null_ls.builtins.diagnostics.terraform_validate,
 					null_ls.builtins.completion.spell,
 					null_ls.builtins.code_actions.eslint_d,
 				},
