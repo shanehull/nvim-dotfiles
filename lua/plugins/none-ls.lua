@@ -2,9 +2,13 @@ return {
 	{
 		"nvimtools/none-ls.nvim",
 		event = "VeryLazy",
+		dependencies = { "nvimtools/none-ls-extras.nvim" },
 		config = function()
 			local null_ls = require("null-ls")
 			local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+			local eslint_d_diag = require("none-ls.diagnostics.eslint_d")
+			local eslint_d_actions = require("none-ls.code_actions.eslint_d")
 
 			null_ls.setup({
 				sources = {
@@ -27,15 +31,12 @@ return {
 							"pandoc",
 						},
 					}),
-					null_ls.builtins.diagnostics.eslint_d,
+					eslint_d_diag,
 					null_ls.builtins.diagnostics.golangci_lint,
 					null_ls.builtins.diagnostics.statix,
-					null_ls.builtins.diagnostics.luacheck.with({
-						extra_args = { "--globals", "vim", "--std", "luajit" },
-					}),
 					null_ls.builtins.diagnostics.terraform_validate,
 					null_ls.builtins.completion.spell,
-					null_ls.builtins.code_actions.eslint_d,
+					eslint_d_actions,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
